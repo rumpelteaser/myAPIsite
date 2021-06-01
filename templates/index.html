@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Stock Market Data</title>
+        <link rel="stylesheet" href="static/css/styles.css" />
+    </head>
+
+    <body>
+        <h1>Stock Market Data</h1>
+        <form action="{{ url_for('handle_data') }}" method="post">
+            <label>Enter symbol to be looked for (e.g. 'AAPL' for Apple): </label>
+            <br>
+            <input type="text" name="mydata">
+            <input type="submit" value="Get data">
+        </form>
+        <h2>{{ code }}</h2>
+        <div class="values" id="values">
+            <table class="center">
+            {% if not (code == ""): %}
+                <tr style="background:white">
+                    <th>Date</th>
+                    <th>Close</th>>
+                    <th>Volume</th>>
+                </tr>
+            {% endif %}
+            {% for value in values[:30]: %}
+                <tr style="background:white">
+                    <td width="100">{{ value['date'][:10] }}</td>
+                    <td width="100">{{ value['close'] }}</td>>
+                    <td width="100">{{ value['volume'] }}</td>>
+                </tr>
+            {% endfor %}
+            </table>
+        </div>
+
+    </body>
+
+</html>
